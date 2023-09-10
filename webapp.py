@@ -47,10 +47,10 @@ def get_links():
     return cursor.fetchall()
 
 def main():
-    st.title("Ajay's chapters!")
+    st.title("Simple Blog with Streamlit")
 
     # Create a sidebar to add new blog posts
-    st.sidebar.header("Create a new incident")
+    st.sidebar.header("Create a New Blog Post")
     post_title = st.sidebar.text_input("Title")
     post_content = st.sidebar.text_area("Content")
     if st.sidebar.button("Create Post"):
@@ -72,7 +72,7 @@ def main():
             st.sidebar.error("Please enter both a title and URL for the link.")
 
     # Display existing blog posts
-    st.header("Incidents:")
+    st.header("Blog Posts")
     posts = get_posts()
     if posts:
         for post_id, title, content in posts:
@@ -103,6 +103,22 @@ def main():
     if st.button("Reset Database"):
         reset_database()
         st.success("Database reset successfully!")
+
+    # Allow the user to change the background image
+    st.sidebar.header("Change Background Image")
+    background_image_url = st.sidebar.text_input("Enter Background Image URL:")
+    if st.sidebar.button("Apply Background"):
+        st.markdown(
+            f"""
+            <style>
+            body {{
+                background-image: url("{background_image_url}");
+                background-size: cover;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
 if __name__ == "__main__":
     main()
