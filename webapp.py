@@ -50,7 +50,7 @@ def main():
     st.title("Ajay's chapters")
 
     # Create a sidebar to add new blog posts
-    st.sidebar.header("Create a Nee Incident")
+    st.sidebar.header("Create a New Incident")
     post_title = st.sidebar.text_input("Title")
     post_content = st.sidebar.text_area("Content")
     if st.sidebar.button("Create Post"):
@@ -86,7 +86,7 @@ def main():
                     st.success("Post updated successfully!")
 
     # Display existing links
-    st.header("Links")
+    st.header("Links :")
     links = get_links()
     if links:
         for link_id, title, url in links:
