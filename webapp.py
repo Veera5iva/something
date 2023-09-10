@@ -47,10 +47,10 @@ def get_links():
     return cursor.fetchall()
 
 def main():
-    st.title("Streamlit Blog")
+    st.title("Ajay's chapters")
 
     # Create a sidebar to add new blog posts
-    st.sidebar.header("Create a New Blog Post")
+    st.sidebar.header("Create a New Incident")
     post_title = st.sidebar.text_input("Title")
     post_content = st.sidebar.text_area("Content")
     if st.sidebar.button("Create Post"):
@@ -71,26 +71,38 @@ def main():
         else:
             st.sidebar.error("Please enter both a title and URL for the link.")
 
-    # Add a "Reset Database" button
-    if st.sidebar.button("Reset Database"):
-        reset_database()
-        st.sidebar.success("Database reset successfully!")
-
     # Display existing blog posts
-    st.header("Blog Posts")
+    st.header("Incidents :")
     posts = get_posts()
     if posts:
         for post_id, title, content in posts:
             st.subheader(title)
             st.write(content)
+            if st.button(f"Edit '{title}'"):
+                new_title = st.text_input(f"New title for '{title}':", value=title)
+                new_content = st.text_area(f"New content for '{title}':", value=content)
+                if st.button("Save Changes"):
+                    edit_post(post_id, new_title, new_content)
+                    st.success("Post updated successfully!")
 
     # Display existing links
-    st.header("Links")
+    st.header("Links :")
     links = get_links()
     if links:
         for link_id, title, url in links:
             st.subheader(title)
             st.write(url)
+            if st.button(f"Edit '{title}'"):
+                new_title = st.text_input(f"New title for '{title}':", value=title)
+                new_url = st.text_input(f"New URL for '{title}':", value=url)
+                if st.button("Save Changes"):
+                    edit_link(link_id, new_title, new_url)
+                    st.success("Link updated successfully!")
+
+    # Add a "Reset Database" button
+    if st.button("Reset Database"):
+        reset_database()
+        st.success("Database reset successfully!")
 
 if __name__ == "__main__":
     main()
