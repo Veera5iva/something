@@ -104,21 +104,5 @@ def main():
         reset_database()
         st.success("Database reset successfully!")
 
-    # Allow the user to change the background image
-    st.sidebar.header("Change Background Image")
-    background_image_url = st.sidebar.text_input("Enter Background Image URL:")
-    if st.sidebar.button("Apply Background"):
-        st.markdown(
-            f"""
-            <style>
-            body {{
-                background-image: url("{background_image_url}");
-                background-size: cover;
-            }}
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
 if __name__ == "__main__":
     main()
