@@ -33,6 +33,11 @@ def create_link(title, url):
     cursor.execute('INSERT INTO links (title, url) VALUES (?, ?)', (title, url))
     conn.commit()
 
+def reset_database():
+    cursor.execute('DELETE FROM blog_posts')
+    cursor.execute('DELETE FROM links')
+    conn.commit()
+
 def get_posts():
     cursor.execute('SELECT id, title, content FROM blog_posts')
     return cursor.fetchall()
@@ -40,14 +45,6 @@ def get_posts():
 def get_links():
     cursor.execute('SELECT id, title, url FROM links')
     return cursor.fetchall()
-
-def edit_post(id, title, content):
-    cursor.execute('UPDATE blog_posts SET title=?, content=? WHERE id=?', (title, content, id))
-    conn.commit()
-
-def edit_link(id, title, url):
-    cursor.execute('UPDATE links SET title=?, url=? WHERE id=?', (title, url, id))
-    conn.commit()
 
 def main():
     st.title("Simple Blog with Streamlit")
@@ -101,6 +98,11 @@ def main():
                 if st.button("Save Changes"):
                     edit_link(link_id, new_title, new_url)
                     st.success("Link updated successfully!")
+
+    # Add a "Reset Database" button
+    if st.button("Reset Database"):
+        reset_database()
+        st.success("Database reset successfully!")
 
 if __name__ == "__main__":
     main()
