@@ -47,7 +47,7 @@ def get_links():
     return cursor.fetchall()
 
 def main():
-    st.title("Simple Blog with Streamlit")
+    st.title("Ajay's chapters")
 
     # Create a sidebar to add new blog posts
     st.sidebar.header("Create a New Blog Post")
@@ -72,7 +72,7 @@ def main():
             st.sidebar.error("Please enter both a title and URL for the link.")
 
     # Display existing blog posts
-    st.header("Blog Posts")
+    st.header("Incidents :")
     posts = get_posts()
     if posts:
         for post_id, title, content in posts:
