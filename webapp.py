@@ -50,7 +50,7 @@ def main():
     st.title("Ajay's chapters")
 
     # Create a sidebar to add new blog posts
-    st.sidebar.header("Create a New Blog Post")
+    st.sidebar.header("Create a Nee Incident")
     post_title = st.sidebar.text_input("Title")
     post_content = st.sidebar.text_area("Content")
     if st.sidebar.button("Create Post"):
