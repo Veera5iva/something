@@ -47,10 +47,10 @@ def get_links():
     return cursor.fetchall()
 
 def main():
-    st.title("Ajay's chapters")
+    st.title("Streamlit Blog")
 
     # Create a sidebar to add new blog posts
-    st.sidebar.header("Create a New Incident")
+    st.sidebar.header("Create a New Blog Post")
     post_title = st.sidebar.text_input("Title")
     post_content = st.sidebar.text_area("Content")
     if st.sidebar.button("Create Post"):
@@ -71,13 +71,13 @@ def main():
         else:
             st.sidebar.error("Please enter both a title and URL for the link.")
 
-    # Add a "Reset Data" button
-    if st.sidebar.button("Reset Data"):
+    # Add a "Reset Database" button
+    if st.sidebar.button("Reset Database"):
         reset_database()
-        st.sidebar.success("Data reset successfully!")
+        st.sidebar.success("Database reset successfully!")
 
     # Display existing blog posts
-    st.header("Incidents")
+    st.header("Blog Posts")
     posts = get_posts()
     if posts:
         for post_id, title, content in posts:
